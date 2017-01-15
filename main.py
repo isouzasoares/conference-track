@@ -11,4 +11,4 @@ if __name__ == '__main__':
     for item in sys.stdin.read().split("\n"):
         if item:
             items.append(item)
-    Talk(items)
+    Talk(items).output()

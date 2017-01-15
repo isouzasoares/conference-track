@@ -55,7 +55,7 @@ class Track(object):
         return items_str
 
     def get_list_track(self):
-        """ """
+        """ Create string output"""
         track_str = self.get_hour(self.morning, self.start)
 
         track_str += self.get_hour(self.afternoon,

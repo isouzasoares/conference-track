@@ -56,7 +56,7 @@ class Schedule(object):
                     break
 
     def print_track(self):
-        """ """
+        """ Return output Track object"""
         str_track = ""
         for index, item in enumerate(self.list_slice):
             str_track += "Track %s \n" % (str(index + 1))

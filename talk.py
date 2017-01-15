@@ -2,6 +2,7 @@
 import re
 
 from datetime import timedelta
+from schedule import Schedule
 
 
 class Talk(object):
@@ -11,6 +12,7 @@ class Talk(object):
         self.talk_list = talk_list
         self.objects = []
         self.sorts = []
+        self.create_talk_objects()
 
     def create_talk_objects(self):
         """return talk talk title and talk
@@ -25,3 +27,7 @@ class Talk(object):
                 minute = ""
             self.objects.append({"title": talk,
                                  "minute": minute})
+
+    def output(self):
+        """ """
+        print Schedule(self.objects).print_track()
