@@ -87,6 +87,16 @@ class TestSchedule(unittest.TestCase):
         chunks = self.schedule.chunks_talks()
         self.assertEqual(len(chunks['not_time']), 1)
         self.assertEqual(len(chunks['list_talk']), 2)
+        count = len(chunks['list_talk'][0]) + len(chunks['list_talk'][1])
+        self.assertEqual(count, len(self.task_objects))
+        new_list = self.task_objects[:]
+        new_list.append({"title": "Rails for Python Developers lightning",
+                         "minute": ""})
+        schedule = Schedule(new_list)
+        chunks = schedule.chunks_talks()
+        self.assertEqual(len(chunks['not_time']), 2)
+        count = len(chunks['list_talk'][0]) + len(chunks['list_talk'][1])
+        self.assertEqual(count, len(new_list))
 
 if __name__ == '__main__':
 

@@ -28,11 +28,29 @@ class Schedule(object):
                     total += item["minute"]
                     list_talk = []
                 list_talk.append(item)
-                if index == total_items:
-                    self.list_slice.append(list_talk)
-                    break
             else:
                 self.not_time.append(item)
 
+            if index == total_items:
+                self.list_slice.append(list_talk)
+                break
+
+        self.splice_not_time()
         return {"not_time": self.not_time,
                 "list_talk": self.list_slice}
+
+    def splice_not_time(self):
+        """Add not time in list_slice"""
+        minutes_index = []
+        for list_item in self.list_slice:
+            sum_min = sum([i["minute"].seconds / 60 for i in list_item])
+            minutes_index.append(sum_min)
+        sum_min = minutes_index[:]
+        sum_min.sort()
+
+        for lighttalk in self.not_time:
+            for minute in sum_min:
+                if ((minute + 5) <= (self.track_min_total.seconds / 60)):
+                    index = minutes_index.index(minute)
+                    self.list_slice[index].append(lighttalk)
+                    break
