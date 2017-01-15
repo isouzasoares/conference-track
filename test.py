@@ -160,6 +160,8 @@ class TestSchedule(unittest.TestCase):
         schedule = Schedule(talks)
         self.assertEqual(len(schedule.not_time), 0)
         str_s = schedule.print_track()
+        str_title = "09:00AM Writing Fast Tests Against Enterprise"
+        self.assertTrue(str_title in str_s)
 
 
 class TestTrack(unittest.TestCase):

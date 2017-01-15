@@ -33,4 +33,4 @@ class Talk(object):
 
     def output(self):
         """ Return output talk """
-        print Schedule(self.objects).print_track()
+        print(Schedule(self.objects).print_track())
