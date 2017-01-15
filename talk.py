@@ -23,11 +23,14 @@ class Talk(object):
                 minute = minute.group()
                 minute = re.match(r'(\d+)', minute).group()
                 minute = timedelta(minutes=int(minute))
+                if minute >= timedelta(minutes=420):
+                    raise Exception("Entries older than 420"
+                                    " minutes are not allowed")
             else:
                 minute = ""
             self.objects.append({"title": talk,
                                  "minute": minute})
 
     def output(self):
-        """ """
+        """ Return output talk """
         print Schedule(self.objects).print_track()

@@ -118,8 +118,11 @@ class TestTalks(unittest.TestCase):
                               "minute": timedelta(minutes=30)}]
 
     def test_talk_objects(self):
-        self.talk.create_talk_objects()
         self.assertListEqual(self.talk.objects, self.talk_objects)
+
+    def test_talk_raise(self):
+        with self.assertRaises(Exception):
+            Talk(["A World Without HackerNews 450min"])
 
 
 class TestSchedule(unittest.TestCase):
@@ -156,6 +159,7 @@ class TestSchedule(unittest.TestCase):
                   "minute": timedelta(minutes=45)}]
         schedule = Schedule(talks)
         self.assertEqual(len(schedule.not_time), 0)
+        str_s = schedule.print_track()
 
 
 class TestTrack(unittest.TestCase):
