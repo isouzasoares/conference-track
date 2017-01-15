@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from datetime import timedelta
+from track import Track
 
 
 class Schedule(object):
@@ -9,9 +10,8 @@ class Schedule(object):
         self.items = items
         self.not_time = []
         self.list_slice = []
-        self.morning_max = timedelta(minutes=180)
-        self.afternoon_max = timedelta(minutes=240)
-        self.track_min_total = self.morning_max + self.afternoon_max
+        self.track_min_total = timedelta(minutes=420)
+        self.chunks_talks()
 
     def chunks_talks(self):
         """slice talks in 420 min"""
@@ -54,3 +54,11 @@ class Schedule(object):
                     index = minutes_index.index(minute)
                     self.list_slice[index].append(lighttalk)
                     break
+
+    def print_track(self):
+        """ """
+        str_track = ""
+        for index, item in enumerate(self.list_slice):
+            str_track += "Track %s \n" % (str(index + 1))
+            str_track += Track(item).get_list_track()
+        return str_track
