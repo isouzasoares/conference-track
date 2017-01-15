@@ -21,7 +21,7 @@ class Talk(object):
                 minute = minute.group()
                 minute = re.match(r'(\d+)', minute).group()
                 minute = timedelta(minutes=int(minute))
-                self.objects.append({"title": talk,
-                                     "minute": minute})
             else:
-                self.sorts.append({"title": talk})
+                minute = ""
+            self.objects.append({"title": talk,
+                                 "minute": minute})
