@@ -41,7 +41,7 @@ class Track(object):
                              title)
 
     def get_hour(self, items, start, interval="Lunch"):
-        """Return list track hour"""
+        """Return list track hour string"""
         items_str = ""
         for item in items:
             items_str += self.mount_str(start, item['title'])
